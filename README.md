@@ -4,26 +4,16 @@ Byte Auction is a personal project designed to provide a smooth and engaging onl
 
 ---
 
-## How to Get Started
 
-1. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/0xprasanth/byte-auction.git
-   cd byte-auction
-   ```
+## ✨ Features
+- [x] 🔑 **Google SSO**
+- [x] 📦 **Create Items for Bidding**
+- [x] 💰 **Place Bids on Public Items**
+- [x] 🔔 **Outbid Alerts**
 
-2. **Install Dependencies**  
-   ```bash
-   npm install
-   ```
-
-3. **Run the Application**  
-   ```bash
-   npm run dev
-   ```
-
-4. **Visit the App**  
-   Open your browser and navigate to `http://localhost:3000`.
+### 🚧 **To-Do List**
+- [ ] 🗓️ Select End Date for Bidding
+- [ ] 🔔 Email Notifications
 
 ---
 
@@ -38,13 +28,31 @@ Byte Auction is a personal project designed to provide a smooth and engaging onl
 
 ---
 
-## Todo
-- [x] 🔑 **Google SSO**
-- [x] 📦 **Create Items for Bidding**
-- [x] 💰 **Place Bids on Public Items**
-- [x] 🔔 **Outbid Alerts**
-- [ ] 🗓️ Select End Date for Bidding
-- [ ] 🔔 Email Notifications
+## How to Get Started
+
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/0xprasanth/byte-auction.git
+   cd byte-auction
+   ```
+
+2. **Install Dependencies**  
+   ```bash
+   npm install
+   ```
+3. **Setup env variables**  
+* Refer [.env.example](.env.example) 
+* Setup Google OAuth ID in the [console](https://console.cloud.google.com/apis/credentials)
+* Setup [Knock](https://knock.app/) account and get the API keys. Refer [Knock Docs for React](https://docs.knock.app/in-app-ui/react/overview)
+* Then, create .env before running the application
+
+4. **Run the Application**  
+   ```bash
+   npm run dev
+   ```
+
+5. **Visit the App**  
+   Open your browser and navigate to `http://localhost:3000`.
 
 ---
 ## Contributing
