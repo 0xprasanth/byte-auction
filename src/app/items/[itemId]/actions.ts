@@ -77,6 +77,8 @@ export async function createBidAction(itemId: number) {
       data: {
         itemId,
         bidAmount: latestBidValue,
+        itemName: item.name,
+        // user: { image: session.user.image!, name: session.user.name! },
       },
     });
   }

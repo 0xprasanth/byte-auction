@@ -2,12 +2,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  NotificationCell,
   NotificationFeedPopover,
   NotificationIconButton,
 } from "@knocklabs/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 import { Button } from "./ui/button";
+import { formatToDollar } from "@/utils/currency";
 
 export function Header() {
   const session = useSession();
@@ -64,17 +66,24 @@ export function Header() {
             buttonRef={notifButtonRef}
             isVisible={isVisible}
             onClose={() => setIsVisible(false)}
-            renderItem={(item) => (
-              <div>
-                {item.item.data && (
-                  <Link
-                    onClick={() => setIsVisible(false)}
-                    href={`/items/${item.item.data.itemId}`}
-                  >
-                    Someone outbidded you {item.item.data.itemId}
-                  </Link>
-                )}
-              </div>
+            renderItem={({ item, ...props }) => (
+              <NotificationCell {...props} item={item}>
+                <div className="">
+                  <div className="rounded-lg">
+                    {item.data && (
+                      <Link
+                        onClick={() => setIsVisible(false)}
+                        href={`/items/${item.data.itemId}`}
+                        className="text-blue-400 hover:underline"
+                      >
+                        someone outbidded you{" "}
+                        <span className="font-bold">{item.data.itemName}</span>!{" "}
+                        by {formatToDollar(item.data.bidAmount)}
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </NotificationCell>
             )}
           />
 
