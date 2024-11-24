@@ -28,7 +28,10 @@ export const items = pgTable("ba_item", {
     .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   startingPrice: integer("startingPrice").notNull().default(0),
+  fileKey: text("fileKey").notNull(),
 });
+
+export type Item = typeof items.$inferSelect;
 
 /**
  * User Schema

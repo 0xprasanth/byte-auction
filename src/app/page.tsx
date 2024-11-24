@@ -1,11 +1,9 @@
 import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import SignIn from "@/components/ui/sign-in";
-import { SignOut } from "@/components/ui/sign-out";
 import { database, pg } from "@/db/database";
-import { bids as bidsSchema, items } from "@/db/schema";
-import { revalidatePath } from "next/cache";
+
+import Image from "next/image";
+import { getImageUrl } from "@/utils/files";
+import { ItemCard } from "@/components/item-card";
 
 export default async function HomePage() {
   const session = await auth();
@@ -19,10 +17,7 @@ export default async function HomePage() {
       <h1 className="text-3xl font-bold">Items For Sale</h1>
       <div className="grid grid-cols-4 gap-8">
         {allItems.map((item) => (
-          <div className="rounded-xl border p-8" key={item.id}>
-            {item.name}
-            starting price: ${item.startingPrice / 100}
-          </div>
+          <ItemCard item={item} key={item.id} />
         ))}
       </div>
     </main>
