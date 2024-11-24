@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   boolean,
   timestamp,
@@ -9,14 +10,6 @@ import {
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 
-/**˝
- * table definition for bids
- * ba_bids ==> byte auction bids
- */
-export const bids = pgTable("ba_bids", {
-  id: serial("id").primaryKey(),
-});
-
 /**
  * table definition for bids
  * ba_bids ==> byte auction bids
@@ -27,12 +20,38 @@ export const items = pgTable("ba_item", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
+  currentBid: integer("currentBid").notNull().default(0),
   startingPrice: integer("startingPrice").notNull().default(0),
   fileKey: text("fileKey").notNull(),
   bidInterval: integer("bidInterval").notNull().default(100), // bidding step by 100
 });
 
+/**˝
+ * table definition for bids
+ * ba_bids ==> byte auction bids
+ */
+export const bids = pgTable("ba_bids", {
+  id: serial("id").primaryKey(),
+  amount: integer("amount").notNull(),
+  itemId: serial("itemId")
+    .notNull()
+    .references(() => items.id, { onDelete: "cascade" }),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  timestamp: timestamp("timestamp", { mode: "date" }).notNull(),
+});
+
+// bids releation with user id
+export const usersRelations = relations(bids, ({ one }) => ({
+  user: one(users, {
+    fields: [bids.userId],
+    references: [users.id],
+  }),
+}));
+
 export type Item = typeof items.$inferSelect;
+export type Bids = typeof bids.$inferSelect;
 
 /**
  * User Schema

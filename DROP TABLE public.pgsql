@@ -1,1 +1,0 @@
-DROP TABLE public."bb_verificationToken" CASCADE;

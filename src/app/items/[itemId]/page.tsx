@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { database } from "@/db/database";
-import { items } from "@/db/schema";
 import { emptyStateDiv, pageTitleStyle } from "@/styles/style";
 import { getImageUrl } from "@/utils/files";
-import { eq } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistance } from "date-fns/formatDistance";
 import { formatToDollar } from "@/utils/currency";
+import { createBidAction } from "./actions";
+import { getBidsForItem } from "@/data-access/bids";
+import { getItem } from "@/data-access/items";
 
 function formatTimeStamp(timestamp: Date) {
   return formatDistance(timestamp, new Date(), {
@@ -21,9 +21,7 @@ export default async function ItemPage({
 }) {
   const itemId = (await params).itemId;
 
-  const item = await database.query.items.findFirst({
-    where: eq(items.id, itemId),
-  });
+  const item = await getItem(itemId);
   if (!item) {
     return (
       <div className={emptyStateDiv}>
@@ -44,28 +42,8 @@ export default async function ItemPage({
       </div>
     );
   }
-  const bids: any[] = [];
-  const hasBids = bids.length > 0;
-  // const bids = [
-  //   {
-  //     id: 1,
-  //     amount: 100,
-  //     userName: "Alice",
-  //     timestamp: new Date(),
-  //   },
-  //   {
-  //     id: 2,
-  //     amount: 200,
-  //     userName: "Alice",
-  //     timestamp: new Date(),
-  //   },
-  //   {
-  //     id: 3,
-  //     amount: 300,
-  //     userName: "Alice",
-  //     timestamp: new Date(),
-  //   },
-  // ] as const;
+
+  const { allBids, hasBids } = await getBidsForItem(itemId);
 
   return (
     <main className="container mx-auto space-y-8 py-12">
@@ -83,12 +61,20 @@ export default async function ItemPage({
             className="rounded-xl"
           />
           <div className="text-xl">
-            <div></div>
-            Starting Price of{" "}
-            <span className="font-bold">
-              {formatToDollar(item.startingPrice)}
-            </span>
-            <div></div>
+            <div>
+              Current Bid{" "}
+              <span className="font-bold">
+                {formatToDollar(item.currentBid)}
+              </span>
+            </div>
+
+            <div>
+              Starting Price of{" "}
+              <span className="font-bold">
+                {formatToDollar(item.startingPrice)}
+              </span>
+            </div>
+
             <div>
               Bid Interval{" "}
               <span className="font-bold">
@@ -100,14 +86,22 @@ export default async function ItemPage({
 
         {/* right */}
         <div className="flex-1 space-y-8">
-          <h2 className="text-2xl font-semibold">Current Bids</h2>
+          <div className="flex justify-between">
+            <h2 className="text-2xl font-semibold">Current Bids</h2>
+            <form action={createBidAction.bind(null, item.id)}>
+              <Button>Place My Bid</Button>
+            </form>
+          </div>
+
           {hasBids ? (
             <ul className="space-y-4">
-              {bids.map((bid) => (
+              {allBids.map((bid) => (
                 <li className="rounded-xl bg-gray-100 p-8" key={bid.id}>
                   <div>
-                    <span className="font-bold">${bid.amount}</span> by{" "}
-                    <span className="font-bold">{bid.userName}</span> at{" "}
+                    <span className="font-bold">
+                      {formatToDollar(bid.amount)}
+                    </span>{" "}
+                    by <span className="font-bold">{bid.user.name}</span> at{" "}
                     <span className="font-normal">
                       {formatTimeStamp(bid.timestamp)}
                     </span>
@@ -124,9 +118,9 @@ export default async function ItemPage({
                 alt="Void - No Auctions found"
               />
               <h2 className="text-2xl font-bold">No Bids yet!</h2>
-              <Button asChild>
-                <Link href={"/"}>Bid it now</Link>
-              </Button>
+              <form action={createBidAction.bind(null, item.id)}>
+                <Button>Place My Bid</Button>
+              </form>
             </div>
           )}
         </div>
