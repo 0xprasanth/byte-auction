@@ -1,29 +1,62 @@
-# Create T3 App
+# Byte Auction
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Byte Auction is a personal project designed to provide a smooth and engaging online auction experience.
 
-## What's next? How do I make an app with this?
+---
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How to Get Started
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/0xprasanth/byte-auction.git
+   cd byte-auction
+   ```
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+2. **Install Dependencies**  
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Run the Application**  
+   ```bash
+   npm run dev
+   ```
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+4. **Visit the App**  
+   Open your browser and navigate to `http://localhost:3000`.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+---
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Tech Stack
 
-## How do I deploy this?
+- **Frontend:** [Next.js v15](https://nextjs.org/docs), [Tailwind CSS](https://tailwindcss.com/docs/installation), [Shadcn UI](https://ui.shadcn.com/docs)
+- **Backend:** [NextJs Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- **Database:** [Postgres](https://www.postgresql.org/)
+- **ORM**: [Drizzle](https://orm.drizzle.team/)
+- **Authentication:** Google OAuth 2.0 using [Auth.js](https://authjs.dev/)
+- **Real-Time Notifications:** [Knock](https://knock.app)
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+---
+
+## Todo
+- [x] 🔑 **Google SSO**
+- [x] 📦 **Create Items for Bidding**
+- [x] 💰 **Place Bids on Public Items**
+- [x] 🔔 **Outbid Alerts**
+- [ ] 🗓️ Select End Date for Bidding
+- [ ] 🔔 Email Notifications
+
+---
+## Contributing
+
+Contributions are welcomed greatly! Please fork the repository, create a branch for your feature or bug fix, and submit a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
+
+Stay tuned for updates and new features! 🚀
