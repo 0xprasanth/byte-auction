@@ -7,14 +7,15 @@ import { bids as bidsSchema, items } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { createItemAction } from "./action";
 import axios from "axios";
+import { pageTitleStyle } from "@/styles/style";
 
 export default function CreateBidPage() {
   // fetch all bids
   //   const allBids = await database.query.bids.findMany();
 
   return (
-    <main className="container mx-auto space-y-8 py-12">
-      <h1 className="text-4xl font-bold">Post an Item</h1>
+    <main className="space-y-8">
+      <h1 className={pageTitleStyle}>Post an Item</h1>
       <form
         onSubmit={async (e) => {
           e.preventDefault();

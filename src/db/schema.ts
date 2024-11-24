@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 
-/**
+/**˝
  * table definition for bids
  * ba_bids ==> byte auction bids
  */
@@ -29,6 +29,7 @@ export const items = pgTable("ba_item", {
   name: text("name").notNull(),
   startingPrice: integer("startingPrice").notNull().default(0),
   fileKey: text("fileKey").notNull(),
+  bidInterval: integer("bidInterval").notNull().default(100), // bidding step by 100
 });
 
 export type Item = typeof items.$inferSelect;

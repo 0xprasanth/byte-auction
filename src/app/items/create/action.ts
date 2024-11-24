@@ -38,6 +38,6 @@ export async function createItemAction({
     fileKey: fileName,
   });
   // // refresh page on page updates
-  // revalidatePath("/");
-  // redirect("/");
+  revalidatePath("/");
+  redirect("/");
 }
