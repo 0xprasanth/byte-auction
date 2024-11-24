@@ -1,14 +1,13 @@
 import "@/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
 import { cn } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
+import { type Metadata } from "next";
+import { Header } from "@/components/header";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
-import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -27,6 +26,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <Header />
         {children}
       </body>
     </html>

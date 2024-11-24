@@ -14,52 +14,17 @@ export default async function HomePage() {
   const allItems = await database.query.items.findMany();
 
   return (
-    <main className="container mx-auto py-12">
-      {!session ? <SignIn /> : <SignOut />}
-      {session ? session.user?.name : "login"}
-
-      {/* test form and connection with drizzle */}
-      <h1>Create Bid</h1>
-      <form
-        action={async (formData: FormData) => {
-          "use server";
-          const bid = formData.get("bid") as string;
-          // SQL to create records
-          await database.insert(bidsSchema).values({});
-          // refresh page on page updates
-          revalidatePath("/");
-        }}
-      >
-        <Input
-          name="bid"
-          id="bid"
-          placeholder="Bid"
-          className="border border-slate-500"
-        />
-        <Button type="submit">Place bid</Button>
-      </form>
-      <div className="my-0 h-10 w-full"></div>
-
-      <h1>Create Item</h1>
-      <form
-        action={async (formData: FormData) => {
-          "use server";
-          // const bid = formData.get("bid") as string;
-          // SQL to create records
-          await database.insert(items).values({
-            name: formData.get("name") as string,
-            userId: session?.user?.id!,
-          });
-          // refresh page on page updates
-          revalidatePath("/");
-        }}
-      >
-        <Input name="name" id="name" placeholder="Name your item" />
-        <Button type="submit">Post Item</Button>
-      </form>
+    <main className="container mx-auto space-y-8 py-12">
       {/* {session && allBids.map((bid) => <div key={bid.id}>{bid.id}</div>)} */}
-
-      {session && allItems.map((item) => <div key={item.id}>{item.name}</div>)}
+      <h1 className="text-3xl font-bold">Items For Sale</h1>
+      <div className="grid grid-cols-4 gap-8">
+        {allItems.map((item) => (
+          <div className="rounded-xl border p-8" key={item.id}>
+            {item.name}
+            starting price: ${item.startingPrice / 100}
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
