@@ -4,6 +4,7 @@ import postgres from "postgres";
 import * as schema from "./schema";
 
 declare global {
+  // eslint-disable-next-line no-var -- only var works here
   var database: PostgresJsDatabase<typeof schema> | undefined;
 }
 

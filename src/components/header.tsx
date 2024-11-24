@@ -78,7 +78,7 @@ export function Header() {
                       >
                         someone outbidded you{" "}
                         <span className="font-bold">{item.data.itemName}</span>!{" "}
-                        by {formatToDollar(item.data.bidAmount)}
+                        by {formatToDollar(Number(item.data?.bidAmount))}
                       </Link>
                     )}
                   </div>

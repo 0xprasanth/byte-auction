@@ -4,9 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
-
-function EmptyState({}: Props) {
+function EmptyState() {
   return (
     <div className={emptyStateDiv}>
       <Image

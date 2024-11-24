@@ -8,6 +8,7 @@ import { revalidatePath } from "next/cache";
 import { createItemAction } from "./action";
 import axios from "axios";
 import { pageTitleStyle } from "@/styles/style";
+import { UploadResponseType } from "@/types/AxiosResponse";
 
 export default function CreateBidPage() {
   // fetch all bids
@@ -24,8 +25,10 @@ export default function CreateBidPage() {
           const file = formData.get("file") as File;
 
           const uploadFormData = new FormData();
+
           uploadFormData.append("file", file);
-          const { data: imageUpload } = await axios.post(
+
+          const { data: imageUpload } = await axios.post<UploadResponseType>(
             `/api/upload`,
             uploadFormData,
           );
