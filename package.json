@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
+    "@knocklabs/node": "^0.6.15",
+    "@knocklabs/react": "^0.2.31",
     "@radix-ui/react-slot": "^1.1.0",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@types/date-fns": "^2.5.3",
@@ -36,6 +38,7 @@
     "postgres": "^3.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.3"

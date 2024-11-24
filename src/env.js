@@ -13,6 +13,7 @@ export const env = createEnv({
     AUTH_SECRET: z.string(),
     AUTH_GOOGLE_SECRET: z.string(),
     AUTH_GOOGLE_ID: z.string(),
+    KNOCK_SECRET_KEY: z.string().min(1), // for knock
   },
 
   /**
@@ -22,6 +23,8 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_KNOCK_PUBLIC_API_KEY: z.string(),
+    NEXT_PUBLIC_KNOCK_FEED_ID: z.string(),
   },
 
   /**
@@ -35,6 +38,10 @@ export const env = createEnv({
     AUTH_SECRET: process.env.AUTH_SECRET,
     AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID,
     AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET,
+    NEXT_PUBLIC_KNOCK_PUBLIC_API_KEY:
+      process.env.NEXT_PUBLIC_KNOCK_PUBLIC_API_KEY,
+    NEXT_PUBLIC_KNOCK_FEED_ID: process.env.NEXT_PUBLIC_KNOCK_FEED_ID,
+    KNOCK_SECRET_KEY: process.env.KNOCK_SECRET_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

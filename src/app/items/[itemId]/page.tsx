@@ -8,6 +8,8 @@ import { formatToDollar } from "@/utils/currency";
 import { createBidAction } from "./actions";
 import { getBidsForItem } from "@/data-access/bids";
 import { getItem } from "@/data-access/items";
+import { auth } from "@/auth";
+import SignIn from "@/components/ui/sign-in";
 
 function formatTimeStamp(timestamp: Date) {
   return formatDistance(timestamp, new Date(), {
@@ -20,7 +22,7 @@ export default async function ItemPage({
   params: Promise<{ itemId: number }>;
 }) {
   const itemId = (await params).itemId;
-
+  const session = await auth();
   const item = await getItem(itemId);
   if (!item) {
     return (
@@ -44,6 +46,8 @@ export default async function ItemPage({
   }
 
   const { allBids, hasBids } = await getBidsForItem(itemId);
+
+  const canPlaceBid = session && item.userId !== session.user.id;
 
   return (
     <main className="container mx-auto space-y-8 py-12">
@@ -88,9 +92,11 @@ export default async function ItemPage({
         <div className="flex-1 space-y-8">
           <div className="flex justify-between">
             <h2 className="text-2xl font-semibold">Current Bids</h2>
-            <form action={createBidAction.bind(null, item.id)}>
-              <Button>Place My Bid</Button>
-            </form>
+            {canPlaceBid && (
+              <form action={createBidAction.bind(null, item.id)}>
+                <Button>Place My Bid</Button>
+              </form>
+            )}
           </div>
 
           {hasBids ? (
@@ -118,9 +124,13 @@ export default async function ItemPage({
                 alt="Void - No Auctions found"
               />
               <h2 className="text-2xl font-bold">No Bids yet!</h2>
-              <form action={createBidAction.bind(null, item.id)}>
-                <Button>Place My Bid</Button>
-              </form>
+              {canPlaceBid ? (
+                <form action={createBidAction.bind(null, item.id)}>
+                  <Button>Place My Bid</Button>
+                </form>
+              ) : (
+                <SignIn />
+              )}
             </div>
           )}
         </div>

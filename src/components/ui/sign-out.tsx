@@ -8,8 +8,6 @@ export function SignOut() {
         "use server";
         await signOut({ redirectTo: "/" });
       }}
-    >
-      <Button type="submit">Sign Out</Button>
-    </form>
+    ></form>
   );
 }
