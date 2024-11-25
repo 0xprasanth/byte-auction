@@ -46,5 +46,9 @@ yarn-error.log*
 .idea
 
 # image uploads
-/public/uploads
+/public/uploads/*.png
+/public/uploads/*.jpg
+# /public/uploads/*.jpeg
+/public/uploads/*.webp
+/public/uploads/*.svg
 *.pgsql
