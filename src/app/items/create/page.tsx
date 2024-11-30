@@ -1,14 +1,10 @@
 "use client";
-import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { database, pg } from "@/db/database";
-import { bids as bidsSchema, items } from "@/db/schema";
-import { revalidatePath } from "next/cache";
 import { createItemAction } from "./action";
 import axios from "axios";
 import { pageTitleStyle } from "@/styles/style";
-import { UploadResponseType } from "@/types/AxiosResponse";
+import { type UploadResponseType } from "@/types/AxiosResponse";
 
 export default function CreateBidPage() {
   // fetch all bids

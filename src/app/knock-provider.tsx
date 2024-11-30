@@ -1,12 +1,7 @@
 "use client";
 import { env } from "@/env";
-import {
-  KnockFeedProvider,
-  KnockProvider,
-  NotificationFeedPopover,
-  NotificationIconButton,
-} from "@knocklabs/react";
-import { ReactNode, useRef, useState } from "react";
+import { KnockFeedProvider, KnockProvider } from "@knocklabs/react";
+import { type ReactNode } from "react";
 import { useSession } from "next-auth/react";
 
 export function AppKnockProviders({ children }: { children: ReactNode }) {

@@ -60,7 +60,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <NotificationIconButton
             ref={notifButtonRef}
-            onClick={(e) => setIsVisible(!isVisible)}
+            onClick={() => setIsVisible(!isVisible)}
           />
           <NotificationFeedPopover
             buttonRef={notifButtonRef}

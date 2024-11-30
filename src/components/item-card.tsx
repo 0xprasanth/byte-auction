@@ -1,9 +1,8 @@
-import { Item } from "@/db/schema";
+import { type Item } from "@/db/schema";
 import { getImageUrl } from "@/utils/files";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { formatToDollar } from "@/utils/currency";
 
 export function ItemCard({ item }: { item: Item }) {
   return (

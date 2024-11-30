@@ -8,7 +8,7 @@ export function formatToDollar(cents: number) {
 export function convertToCurrency(num: number): string {
   const numStr = num.toString().split(".");
   let intPart = numStr[0];
-  const decimalPart = numStr.length > 1 ? "." + numStr[1] : "";
+  // const decimalPart = numStr.length > 1 ? "." + numStr[1] : "";
 
   // Regex to insert commas in the Indian number system format
   const lastThreeDigits = intPart?.slice(-3);

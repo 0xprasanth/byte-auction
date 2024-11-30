@@ -1,6 +1,6 @@
 import { database } from "@/db/database";
 import { items } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 
 export async function getItem(itemId: number) {
   const item = await database.query.items.findFirst({

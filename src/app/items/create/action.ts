@@ -1,12 +1,10 @@
 "use server";
-import axios from "axios";
+
 import { auth } from "@/auth";
 import { database } from "@/db/database";
 import { items } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { clearConfigCache } from "prettier";
-import { env } from "@/env";
 
 type createItemActionType = {
   fileName: string;

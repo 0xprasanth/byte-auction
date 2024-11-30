@@ -134,7 +134,7 @@ export default async function ItemPage({
                 <>
                   <Button disabled={true}>Place My Bid</Button>
                   <span className="text-red-500">
-                    You can't place big on your own item
+                    You can&apos;t place big on your own item
                   </span>
                 </>
               )}

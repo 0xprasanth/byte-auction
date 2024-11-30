@@ -1,13 +1,10 @@
-import { auth } from "@/auth";
-import { database, pg } from "@/db/database";
-
-import Image from "next/image";
-import { getImageUrl } from "@/utils/files";
+// import { auth } from "@/auth";
+import { database } from "@/db/database";
 import { ItemCard } from "@/components/item-card";
 import { pageTitleStyle } from "@/styles/style";
 
 export default async function HomePage() {
-  const session = await auth();
+  // const session = await auth();
   // fetch all bids
   // const allBids = await database.query.bids.findMany();
   const allItems = await database.query.items.findMany();
