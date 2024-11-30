@@ -67,7 +67,7 @@ export function Header() {
             isVisible={isVisible}
             onClose={() => setIsVisible(false)}
             renderItem={({ item, ...props }) => (
-              <NotificationCell {...props} item={item}>
+              <NotificationCell {...props} item={item} key={item.id}>
                 <div className="">
                   <div className="rounded-lg">
                     {item.data && (

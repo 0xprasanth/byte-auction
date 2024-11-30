@@ -50,10 +50,10 @@ export default async function ItemPage({
   const canPlaceBid = session && item.userId !== session.user.id;
 
   return (
-    <main className="container mx-auto space-y-8 py-12">
-      <div className="flex gap-8">
+    <main className="container mx-auto space-y-8 py-4">
+      <div className="flex flex-col gap-8 sm:flex-row">
         {/* left side */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col items-center justify-center gap-6 sm:items-start sm:justify-start">
           <h1 className={pageTitleStyle}>
             <span className="font-normal">Auction for</span> {item.name}
           </h1>
@@ -75,7 +75,7 @@ export default async function ItemPage({
             <div>
               Starting Price of{" "}
               <span className="font-bold">
-                {formatToDollar(item.startingPrice)}
+                {(item.startingPrice / 100).toFixed(2)}
               </span>
             </div>
 
@@ -89,7 +89,7 @@ export default async function ItemPage({
         </div>
 
         {/* right */}
-        <div className="flex-1 space-y-8">
+        <div className="flex-1 space-y-8 p-2">
           <div className="flex justify-between">
             <h2 className="text-2xl font-semibold">Current Bids</h2>
             {canPlaceBid && (
@@ -118,9 +118,9 @@ export default async function ItemPage({
           ) : (
             <div className="flex flex-col items-center gap-8 rounded-xl bg-gray-100 p-12">
               <Image
-                src={"/void.svg"}
-                width={200}
-                height={200}
+                src={"/empty.svg"}
+                width={300}
+                height={300}
                 alt="Void - No Auctions found"
               />
               <h2 className="text-2xl font-bold">No Bids yet!</h2>
@@ -128,8 +128,15 @@ export default async function ItemPage({
                 <form action={createBidAction.bind(null, item.id)}>
                   <Button>Place My Bid</Button>
                 </form>
-              ) : (
+              ) : !(session && session.user.id === item.userId) ? (
                 <SignIn />
+              ) : (
+                <>
+                  <Button disabled={true}>Place My Bid</Button>
+                  <span className="text-red-500">
+                    You can't place big on your own item
+                  </span>
+                </>
               )}
             </div>
           )}
