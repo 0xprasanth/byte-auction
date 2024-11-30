@@ -33,11 +33,13 @@ export default function CreateBidPage() {
             uploadFormData,
           );
 
+          const price = Number(formData.get("startingPrice"));
+          console.log("price", price);
+          console.log("stPrice", formData.get("startingPrice"));
+
           await createItemAction({
             name: formData.get("name") as string,
-            startingPrice: Math.floor(
-              Number(formData.get("startingPrice")) * 100,
-            ),
+            startingPrice: price,
             fileName: imageUpload.fileName ?? "",
           });
         }}
