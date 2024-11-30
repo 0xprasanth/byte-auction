@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/0xprasanth/byte-auction/compare/byte-auction@v1.0.0...byte-auction@v1.0.1) (2024-11-30)
+
+
+### Bug Fixes
+
+* add `key` value to notification list ([3b52118](https://github.com/0xprasanth/byte-auction/commit/3b52118b0c72f202abe63d77ed5b0fb88efbad36))
+* **format:** remove startingPrice multiplied twice creating confusion is fixed ([0d0269d](https://github.com/0xprasanth/byte-auction/commit/0d0269dac873be92556d4bfee863d452fdbfddc1))
+
 ## [1.0.0](https://github.com/0xprasanth/byte-auction/compare/byte-auction@v0.2.0...byte-auction@v1.0.0) (2024-11-24)
 
 
